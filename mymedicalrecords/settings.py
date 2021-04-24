@@ -26,10 +26,7 @@ SECRET_KEY = '^!u1l9lavkmg&p2wkwt%((sltqq6tr@&571y1o0v5j3n(e*1dm'
 DEBUG = False
 
 ALLOWED_HOSTS = ['docdashboard.herokuapp.com']
-server {
-    listen 80 default_server;
-    return 444;
-}
+
 
 
 # Application definition
