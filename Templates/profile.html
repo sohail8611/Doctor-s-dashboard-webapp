@@ -1,0 +1,162 @@
+﻿<!-- For Logged in User -->
+{% if user.is_authenticated%}
+
+{% if user.is_doctor%}
+{% if user.activated%}
+<!---for Doctor profile-->
+{% load static %}
+{% static 'images' as baseUrl%}
+
+<a href="accounts/logout" class="btn btn-block py-2 btn-facebook"><span class=""></span> logout</a>
+<h1>welcome to your profile!</h1>
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Sidebar 09</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                </button>
+            </div>
+        <div class="img bg-wrap text-center py-4" style="        background-image: url({% static 'images/bg_1.jpg)'%};">
+                <div class="user-logo">
+                    
+                    <h3>{{user.first_name}} {{user.last_name}}</h3>
+                </div>
+            </div>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Profile</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-download mr-3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Download</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-gift mr-3"></span> Gift Code</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-trophy mr-3"></span> Top Review</a>
+                </li>
+                <li>
+                    <a href="settings/"><span class="fa fa-cog mr-3"></span>Settings</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
+                </li>
+                <li>
+                    <a href="accounts/logout"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <a href="settings/"><span class="fa fa-cog mr-3"></span>Edit Profile</a></b><br /></b><br />
+            <h2 class="mb-4">Welcome {{user.first_name}}</h2>
+            <h3> <u>Personal Details</u></h3><br /><br />
+
+            <img src="{{user.profile.Profile_pic.url}}" width="120" </b><br /></b><br /></b><br />
+            <p1><b> First Name:</b> </p1> {{user.first_name}} </b><br />
+            <p1><b> Last Name:</b> </p1> {{user.last_name}} </b><br />
+            <p1><b> Username:</b> </p1> {{user.username}} </b><br />
+            <p1><b> Email:</b> </p1> {{user.email}} </b><br />
+            <p1><b> About:</b> </p1> {{user.about}} </b><br />
+            <p1><b> Doctor_type:</b> </p1> {{user.doctor_type}} </b><br /><br />
+
+
+
+
+
+            <h2><u>Certification</u></h2>
+
+            <!-- Certification..........-->
+            <a href="settings/certification/"><span class="fa fa-cog mr-3"></span>Edit Certification</a></b><br /></b><br />
+
+
+            {%for cert in certs%}
+
+            <h5><u><strong>{{cert.title}}</strong></u></h5>
+            <strong><p1>{{cert.text}}</p1></strong><br />
+            <img src="{{cert.certificate.url}}" width="240"</b><br />
+
+            <br />
+            <form action="deletecertificate/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="pkid" value="{{cert.id}}"<br />
+
+
+                <input type="submit" value="delete" />
+            </form>
+            <br />
+            <br />
+            <br />
+
+
+            {% endfor %}
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/popper.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>
+
+
+
+
+{% else%}
+<meta http-equiv="refresh" content="0; url = /activate" />
+
+
+{%endif%}
+
+
+
+
+<!---Doctor profile End-->
+{% else%}
+
+
+<!---patient profile------>
+
+
+<h1>Welcome {{user.first_name}} to Patient Dashboard</h1>
+<a href="accounts/logout" class="btn btn-block py-2 btn-facebook"><span class=""></span> logout</a>
+
+
+
+
+
+
+{%endif%}
+<!---patient profile end-->
+<!-- For Loggedout User -->
+{% else %}
+<a href="/accounts/login" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>please login first</h1>
+{%endif%}
+

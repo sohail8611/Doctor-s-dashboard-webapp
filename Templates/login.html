@@ -1,0 +1,28 @@
+{% if user.is_authenticated%}
+<h1>You are Already Logged in.</h1>
+<a href="/profile/{{user.username}}" class="btn btn-block py-2 btn-facebook">
+    <span class=""></span> Go to your Profile
+</a>
+{% else %}
+
+    <form action="login" method="post">
+
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" /><br />
+
+        <input type="password" name="password" placeholder="Password" /><br />
+
+        <input type="submit" value="login" />
+
+        
+
+
+    </form>
+
+    {% for message in messages %}
+    {{message}}
+    {%endfor%}
+<br /><br />
+
+{%endif%}
+

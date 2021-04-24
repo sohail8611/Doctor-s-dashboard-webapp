@@ -1,0 +1,57 @@
+<!--
+    {% if user.is_authenticated%}
+
+    {% else %}
+<a href="/accounts/login" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>please login first</h1>
+{%endif%}
+
+<h1></h1>
+
+    -->
+{% if user.is_authenticated%}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <a href="/profile/{{user.username}}">Go to Profile</a>
+    <br /><br /><br />
+
+
+
+    <form action="/profile/settings/certification/" method="post" enctype="multipart/form-data">
+
+
+
+        {% csrf_token %}
+
+        <p2>Title: </p2><input type="text" name="title" required /><br /><br />
+
+        <p2>details: </p2><br /><textarea rows="4" cols="20" name="text">
+            
+         </textarea><br>
+
+        <h3>Upload your certificate/degree scanned copy here!</h3>
+
+
+        <input type="file" name="image" required>
+
+
+        <input type="submit" value="Update">
+
+
+    </form>
+
+</body>
+</html>
+<br /><br />
+{%for message in messages%}
+{{message}}
+{%endfor%}
+
+{% else %}
+<a href="/accounts/login" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>please login first</h1>
+{%endif%}
+
+<h1></h1>

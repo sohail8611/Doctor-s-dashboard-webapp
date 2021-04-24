@@ -1,0 +1,55 @@
+<img src="{{profile_pic.url}}" width="120" height="150" </b>
+<br />
+<br />
+
+<p1><b> First Name:</b> </p1> {{first_name}} </b>
+<br />
+<p1><b> Last Name:</b> </p1> {{last_name}} </b>
+<br />
+<p1><b> Username:</b> </p1> {{username}} </b>
+<br />
+<p1><b> Email:</b> </p1> {{email}} </b>
+<br />
+<p1><b> Doctor_type:</b> </p1> {{user.doctor_type}} </b>
+<br />
+<p1><b> About:</b> </p1> {{about}} </b>
+<br />
+<br />
+
+{% if user.is_authenticated %}
+{% if user.activated%}
+
+{% if is_doctor %}
+
+
+<form action="{{username}}/get_appointment" method="post">
+    {% csrf_token %}
+    <textarea rows="4" cols="20" name="text" required>
+   your message
+         </textarea><br>
+
+
+
+    <input type="submit" value="Get Appointment" />
+
+</form>
+
+
+{%else%}
+<h1>not doctor</h1>
+{%endif%}
+
+{%else%}
+<a href="/activate" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>Please Activate your Account first</h1>
+{%endif%}
+
+
+{% else %}
+<a href="/accounts/login" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>please login first</h1>
+{%endif%}
+
+
+
+

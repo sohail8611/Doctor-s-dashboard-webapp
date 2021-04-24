@@ -1,0 +1,79 @@
+{% if user.is_authenticated%}
+<!DOCTYPE html>
+<html>
+<body>
+    <a href="/profile/{{user.username}}">Go to Profile</a>
+    <br /><br /><br />
+    <strong><a href="/changeprofilepic">Change Profile Picture?</a></strong>
+
+
+
+
+    <h1> Update your Profile </h1>
+
+    <form action="/profile/settings/" method="post" enctype="multipart/form-data">
+
+
+
+        {% csrf_token %}
+
+
+        <p2>First_Name: </p2> <input type="text" name="first_name" value="{{user.first_name}}"><br>
+        <p2>LAST_Name: </p2> <input type="text" name="last_name" value="{{user.last_name}}"><br>
+
+        <br />
+        <label for="cars">Choose Doctor type:</label>
+        <select id="doctortype" name="doctortype">
+            <option value="MBBS">MBBS</option>
+            <option value="HS">Heart_Specialist</option>
+            <option value="CS">child specialist</option>
+
+        </select><br /><br /><br />
+
+        <br />
+        <h3>About:</h3>
+        <textarea rows="5" cols="60" name="about" placeholder="About">
+            
+         </textarea><br>
+
+
+
+
+
+
+
+
+
+        <br />
+        <br />
+
+
+
+
+
+
+        <input type="submit" value="Update" />
+
+
+
+
+
+
+
+
+
+    </form>
+    <br />
+
+    {% for message in messages%}
+    <strong>{{message}}</strong>
+    <br /><br />
+
+    {%endfor%}
+
+</body>
+</html>
+{% else %}
+<a href="/accounts/login" class="btn btn-block py-2 btn-facebook"><span class=""></span> login</a>
+<h1>please login first</h1>
+{%endif%}

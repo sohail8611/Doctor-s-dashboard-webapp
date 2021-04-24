@@ -1,0 +1,17 @@
+<a href="/profile/{{user.username}}">Go to Profile</a>
+<br /><br />
+
+<form action="changeprofilepic" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <h3>Upload your Profile Picture!</h3>
+
+    <input type="file" name="image" required>
+
+    <input type="submit" value="Update" />
+</form>
+
+
+{% for message in messages%}
+<strong>{{message}}</strong>
+    {%endfor%}
