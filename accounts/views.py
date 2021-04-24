@@ -35,7 +35,7 @@ def registerAccount(request):
                 messages.info(request,'Enter Valid credential')
                 
                 return render(request,"registerAccount.html")
-            elif auth_user.objects.filter(email=email).exists():
+            elif auth_user.objects.filter(email=email,activated=True).exists():
                 
                 print("Email Taken")
                 messages.info(request,'Email taken')
