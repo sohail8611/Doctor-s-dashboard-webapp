@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^!u1l9lavkmg&p2wkwt%((sltqq6tr@&571y1o0v5j3n(e*1dm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['docdashboard.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['docdashdjango.herokuapp.com','127.0.0.1']
 
 
 # Application definition
