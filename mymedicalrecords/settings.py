@@ -25,7 +25,7 @@ SECRET_KEY = '^!u1l9lavkmg&p2wkwt%((sltqq6tr@&571y1o0v5j3n(e*1dm'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['docdashboard.herokuapp.com']
 
@@ -138,7 +138,7 @@ STATIC_ROOT=os.path.join('assetProfile')
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 EMAIL_HOST='smtp.gmail.com'
