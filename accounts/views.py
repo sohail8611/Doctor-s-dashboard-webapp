@@ -68,7 +68,7 @@ def registerAccount(request):
 
 
                 print(b)
-                
+                auth_user.objects.filter(username=username).delete()
                 auth_user.objects.filter(email=email).delete()
                 user=auth_user.objects.create_user(username=username,password=password1,first_name=first_name,last_name=last_name,email=email,activation_code=b)
                 
