@@ -29,7 +29,7 @@ urlpatterns = [
     path('profile/<str:user_name>/get_appointment',views.appointment,name='appointment'),
     path('activate',views.activateaccount,name='activate'),
     path('changeprofilepic',views.changeprofilepic,name='edit'),
-    path('accounts/resetpassword',views.resetpassword,name='resetPassword')
+    
     
   
    
