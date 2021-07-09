@@ -13,7 +13,7 @@ import random,string
 
 
 from .models import auth_user 
-from .models import Profile,user_certification,resetpw
+from .models import Profile,user_certification
 from django.conf import settings
 
 
@@ -42,8 +42,7 @@ class Profile_list(APIView):
         pass
 
 
-def resetpassword(request):
-    return render(request,'resetpassword.html')
+
 
 
 
