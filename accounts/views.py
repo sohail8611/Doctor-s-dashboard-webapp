@@ -1,6 +1,11 @@
 from django.shortcuts import render,redirect
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from . serializers import auth_userSerializer,user_certificationSerializer,ProfileSerializer
 from django.contrib import messages
 from django.contrib.auth.models import auth
 from django.core.mail import send_mail
@@ -8,13 +13,37 @@ import random,string
 
 
 from .models import auth_user 
-from .models import Profile,user_certification
+from .models import Profile,user_certification,resetpw
 from django.conf import settings
 
 
 import time
 # Create your views here.
+class auth_user_list(APIView):
+    def get(self,request):
+        auth_users=auth_user.objects.all()
+        serializer=auth_userSerializer(auth_users,many=True)
+        return Response(serializer.data)
+    def post(self):
+        pass
+class user_certification_list(APIView):
+    def get(self,request):
+        user_certifications=user_certification.objects.all()
+        serializer=user_certificationSerializer(user_certifications,many=True)
+        return Response(serializer.data)
+    def post(self):
+        pass
+class Profile_list(APIView):
+    def get(self,request):
+        profiles=Profile.objects.all()
+        serializer=ProfileSerializer(profiles,many=True)
+        return Response(serializer.data)
+    def post(self):
+        pass
 
+
+def resetpassword(request):
+    return render(request,'resetpassword.html')
 
 
 
@@ -35,7 +64,7 @@ def registerAccount(request):
                 messages.info(request,'Enter Valid credential')
                 
                 return render(request,"registerAccount.html")
-            elif auth_user.objects.filter(email=email,activated=True).exists():
+            elif auth_user.objects.filter(email=email).exists():
                 
                 print("Email Taken")
                 messages.info(request,'Email taken')
@@ -68,7 +97,7 @@ def registerAccount(request):
 
 
                 print(b)
-                auth_user.objects.filter(username=username).delete()
+                
                 auth_user.objects.filter(email=email).delete()
                 user=auth_user.objects.create_user(username=username,password=password1,first_name=first_name,last_name=last_name,email=email,activation_code=b)
                 
@@ -126,7 +155,7 @@ def home(request):
 
                 return redirect('profile',user.username)
             else:
-                return redirect('activate')
+                return redirect('profile')
 
            
 
