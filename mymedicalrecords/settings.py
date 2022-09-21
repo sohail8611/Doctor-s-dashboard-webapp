@@ -143,7 +143,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='bellachao8611@gmail.com'
-EMAIL_HOST_PASSWORD='ssohail86123'
+EMAIL_HOST_USER='youremail'
+EMAIL_HOST_PASSWORD='yourpassword'
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
